@@ -1,8 +1,5 @@
 const initialize = function(){
 
-  const button = document.querySelector('button');
-  button.addEventListener('click', handleButtonClick);
-
   const mapDiv = document.getElementById('main-map');
   const center = {lat:21.289373, lng:-157.917480};
   const location = "Honolulu"
@@ -11,25 +8,32 @@ const initialize = function(){
   // const westMinster = {lat:51.510357, lng:-0.116773};
   const zoom = 10;
   const mainMap = new MapWrapper(mapDiv, center, zoom);
+
+  const button = document.querySelector('#button-fiji');
+  button.addEventListener('click', handleButtonClick.bind(mainMap));
+
   mainMap.addMarker(center, location, text);
   // mainMap.addMarker(westMinster);
 
   mainMap.addClickEvent();
+
+  var bounceButton = document.querySelector('#button-bounce-markers')
+  bounceButton.addEventListener('click', mainMap.bounceMarkers.bind(mainMap));
 }
 
 const handleButtonClick = function(){
 
-  const mapDiv = document.getElementById('main-map');
-  const center = {lat:-17.713371, lng:178.065033};
-  const zoom =10;
-
-  const mainMap = new MapWrapper(mapDiv, center, zoom);
-
-  text = "Fiji is an island country in Melanesia in the South Pacific Ocean about 1,100 nautical miles (2,000 km; 1,300 mi) northeast of New Zealand's North Island. Its closest neighbours are Vanuatu to the west, New Caledonia to the southwest, New Zealand's Kermadec Islands to the southeast, Tonga to the east, the Samoas and France's Wallis and Futuna to the northeast, and Tuvalu to the north."
-
-  mainMap.addMarker(center, location, text);
-  mainMap.addClickEvent();
-  // mainMap.setCenter({lat:-17.713371, lng:178.065033});
+  // const mapDiv = document.getElementById('main-map');
+  // const center = {lat:-17.713371, lng:178.065033};
+  // const zoom =10;
+  //
+  // const mainMap = new MapWrapper(mapDiv, center, zoom);
+  //
+  // text = "Fiji is an island country in Melanesia in the South Pacific Ocean about 1,100 nautical miles (2,000 km; 1,300 mi) northeast of New Zealand's North Island. Its closest neighbours are Vanuatu to the west, New Caledonia to the southwest, New Zealand's Kermadec Islands to the southeast, Tonga to the east, the Samoas and France's Wallis and Futuna to the northeast, and Tuvalu to the north."
+  //
+  // mainMap.addMarker(center, location, text);
+  // mainMap.addClickEvent();
+  this.googleMap.setCenter({lat:-17.713371, lng:178.065033});
 
 }
 
